@@ -10,7 +10,8 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "vercel-build": "node build.js && cd client && npm install && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
