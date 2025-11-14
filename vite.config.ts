@@ -1,20 +1,20 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./client/src', import.meta.url)),
-      '@shared': fileURLToPath(new URL('./shared', import.meta.url)),
+      "@": fileURLToPath(new URL("./client/src", import.meta.url)),
+      "@shared": fileURLToPath(new URL("./shared", import.meta.url)),
     },
   },
   build: {
-    outDir: 'dist/client',
+    outDir: "dist/client",
     sourcemap: false,
-    minify: 'terser',
+    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
@@ -24,10 +24,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-button'],
-          wagmi: ['wagmi', '@rainbow-me/rainbowkit'],
-          utils: ['clsx', 'tailwind-merge'],
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-button"],
+          wagmi: ["wagmi", "@rainbow-me/rainbowkit"],
+          utils: ["clsx", "tailwind-merge"],
         },
       },
     },
@@ -36,13 +36,13 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
+      "/api": {
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'wagmi', '@rainbow-me/rainbowkit'],
+    include: ["react", "react-dom", "wagmi", "@rainbow-me/rainbowkit"],
   },
 });
